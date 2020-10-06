@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> In App Customer Details </h1>
+    <p>
+        {{ object.first_name }}
+        {{ object.last_name}}
+        {{ object.phone }}
+        {{ object.email }}
+        {{ object.notes }}
+    </p>
+{% endblock %}
