@@ -222,6 +222,9 @@ export async function addBrand(brand: newBrand, csrftoken: string){
     const res = await fetch(`${ROOT}/brands/`, {
         method: 'post',
         credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(brand),
     });
     return process(res);

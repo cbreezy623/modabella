@@ -44,9 +44,11 @@ class ProductSaleForm extends SaleForm {
 
     addSale = () => {
         let item = this.getItem(this.state.sale);
+        if(item === undefined) return;
+
         let data = this.getData(item);
         addPSale(data, this.csrftoken)
-            .then(res => {
+            .then(() => {
                 window.location.reload();
             })
             .catch(err =>  console.log(err));

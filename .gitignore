@@ -6,8 +6,12 @@
 # testing
 /coverage
 
+# tags
+tags
+
 # production
 /build
+build/
 
 # misc
 .DS_Store

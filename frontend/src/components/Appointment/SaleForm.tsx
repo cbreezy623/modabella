@@ -88,6 +88,7 @@ class SaleForm extends Component<any,any> {
     }
 
     handleCategories = (res: any) => {
+        if(res[0] === undefined) return;
         this.setState({ categories: res, group: res[0].id });
         this.getServices(res[0].id);
     }
@@ -99,6 +100,7 @@ class SaleForm extends Component<any,any> {
     }
 
     handleBrands = (res: any) => {
+        if(res[0] === undefined) return;
         this.setState({ brands: res, group: res[0].id });
         this.getProducts(res[0].id);
     }

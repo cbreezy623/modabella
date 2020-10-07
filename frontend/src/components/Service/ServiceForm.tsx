@@ -65,10 +65,11 @@ class ServiceForm extends Component<propsType, any> {
     getCategories = () => {
         getAllCategories()
             .then(res => {
-                this.setState({
-                    categories: res,
-                    category: res[0].id
-                })
+                if(res[0] !== undefined) {
+                    this.setState({ categories: res, category: res[0].id });
+                } else {
+                    this.setState({ categories: res });
+                }
             })
             .catch(err => console.log(err));
     }

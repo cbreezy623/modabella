@@ -63,29 +63,24 @@ class Calendar extends Component<any,any> {
     addAppointment(entry: any) {
         addAppointment(entry, this.csrftoken)
             .then(res => {
-                console.log(res);
                 postTotals({
                     appointment: res.id,
                     cash: 0, card: 0, check: 0, tax: 0, subtotal: 0, p_sub: 0, s_sub: 0
                 }, this.csrftoken)
-                    .then(res => console.log(res));
+                    .then(() => { });
             })
             .catch(err =>  console.log(err));
     }
 
     updateAppointments(id: number, updated: any){
         updateAppointment(id, updated, this.csrftoken)
-            .then(res => {
-                console.log(res);
-            })
+            .then(() => { })
             .catch(err => console.log(err));
     }
 
     deleteAppointment(id: number){
         deleteAppointment(id, this.csrftoken)
-            .then(res => {
-                console.log(res);
-            })
+            .then(() => { })
             .catch(err => console.log(err));
     }
 

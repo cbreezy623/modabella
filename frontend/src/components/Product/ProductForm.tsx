@@ -64,8 +64,11 @@ class ProductForm extends Component<props, any> {
     getBrands = () => {
         getAllBrands()
             .then(res => {
-                this.setState({brands: res});
-                this.setState({brand: res[0].id});
+                if(res[0] !== undefined) {
+                    this.setState({brands: res, brand: res[0].id});
+                } else {
+                    this.setState({brands: res});
+                }
             })
             .catch(err => console.log(err));
     }
