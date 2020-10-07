@@ -9,6 +9,9 @@
 # tags
 tags
 
+# databases
+*.db
+
 # production
 /build
 build/
