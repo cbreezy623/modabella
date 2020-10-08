@@ -12,6 +12,10 @@ tags
 # databases
 *.db
 
+# bin
+/bin
+bin/
+
 # production
 /build
 build/
