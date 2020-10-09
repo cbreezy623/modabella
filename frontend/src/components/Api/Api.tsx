@@ -204,15 +204,20 @@ export async function getServModsByService(service: number) {
 
 // post requests
 
+function ppheaders(csrftoken: string){
+    return ({
+        "X-CSRFToken": csrftoken,
+        "Content-Type": "application/json"
+    });
+}
+
 export async function addAppointment(appointment: appointment, csrftoken: string){
     let data = appointment;
     data.rRule = "";
     const res = await fetch(`${ROOT}/schedulerAppointments/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(data),
     });
     return process(res);
@@ -222,9 +227,7 @@ export async function addBrand(brand: newBrand, csrftoken: string){
     const res = await fetch(`${ROOT}/brands/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(brand),
     });
     return process(res);
@@ -234,9 +237,7 @@ export async function addCategory(category: category, csrftoken: string){
     const res = await fetch(`${ROOT}/categories/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(category),
     });
     return process(res);
@@ -246,9 +247,7 @@ export async function addCustomer(customer: customer, csrftoken: string) {
     const res = await fetch(`${ROOT}/customers/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeCustomerID(customer)),
     });
     return process(res);
@@ -258,9 +257,7 @@ export async function addModifier(modifier: newModifier, csrftoken: string){
     const res = await fetch(`${ROOT}/modifiers/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(modifier),
     });
     return process(res);
@@ -270,9 +267,7 @@ export async function addServMod(servmod: servmod, csrftoken: string) {
     const res = await fetch(`${ROOT}/servmods/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(servmod),
     });
     return process(res);
@@ -282,9 +277,7 @@ export async function addPSale(psale: newPsale, csrftoken: string) {
     const res = await fetch(`${ROOT}/psales/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(psale),
     });
     return process(res);
@@ -294,9 +287,7 @@ export async function addSSale(ssale: newSsale, csrftoken: string ) {
     const res = await fetch(`${ROOT}/ssales/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(ssale),
     });
     return process(res);
@@ -306,9 +297,7 @@ export async function postTotals(totals: totals, csrftoken: string) {
     const res = await fetch(`${ROOT}/appointmentsTotals/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(totals),
     });
     return process(res);
@@ -318,9 +307,7 @@ export async function addProduct(product: product, csrftoken: string) {
     const res = await fetch(`${ROOT}/products/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeProductID(product)),
     });
     return process(res);
@@ -330,9 +317,7 @@ export async function addService(service: service, csrftoken: string) {
     const res = await fetch(`${ROOT}/services/`, {
         method: 'post',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeServiceID(service)),
     });
     return process(res);
@@ -344,9 +329,7 @@ export async function updateAppointment(id: number, updated: any, csrftoken: str
     const res = await fetch(`${ROOT}/schedulerAppointments/${id}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(updated),
     });
     return process(res);
@@ -356,9 +339,7 @@ export async function updateCustomer(customer: customer, csrftoken: string) {
     const res = await fetch(`${ROOT}/customers/${customer.id}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeCustomerID(customer)),
     });
     return process(res);
@@ -368,9 +349,7 @@ export async function updateModifier(modifier: modifier, csrftoken: string) {
     const res = await fetch(`${ROOT}/modifiers/${modifier.id}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeModifierID(modifier)),
     });
     return process(res);
@@ -380,9 +359,7 @@ export async function updateProduct(product: product, csrftoken: string) {
     const res = await fetch(`${ROOT}/products/${product.id}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeProductID(product)),
     });
     return process(res);
@@ -392,9 +369,7 @@ export async function updateService(service: service, csrftoken: string) {
     const res = await fetch(`${ROOT}/services/${service.id}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(removeServiceID(service)),
     });
     return process(res);
@@ -404,9 +379,7 @@ export async function putTotals(totals: totals, csrftoken: string) {
     const res = await fetch(`${ROOT}/appointmentsTotals/${totals.appointment}/`, {
         method: 'put',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: ppheaders(csrftoken),
         body: JSON.stringify(totals),
     });
     return process(res);
