@@ -55,8 +55,18 @@ class Appointment extends Component<Props,any>{
         }
     }
 
-    round = (num: number) => { return (Math.round(num * 100) / 100); }
-    roundAndFix = (num: number) => { return (Math.round(num * 100) / 100).toFixed(2); }
+    round = (num: number) => {
+        if(Math.abs (num * 100 - Math.floor(num * 100) - .5) < .000001){
+            if(Math.floor(num * 100) % 2 === 0){
+                return Math.floor(num * 100) / 100;
+            } else {
+                return Math.floor(num * 100 + 1) / 100;
+            }
+        } else {
+            return (Math.round(num * 100) / 100);
+        }
+    }
+    roundAndFix = (num: number) => { return this.round(num).toFixed(2); }
 
     handlePromises = (res: any) => {
         let s_subtotal = 0;
@@ -70,12 +80,9 @@ class Appointment extends Component<Props,any>{
         });
 
         const tax = p_subtotal * TAX_RATE;
-        const subtotal = p_subtotal + s_subtotal;
-        const total = subtotal + tax
-        
-        const rounded = this.roundAndFix(total);
         const roundedSubtotal = this.roundAndFix(p_subtotal + s_subtotal);
         const roundedTax = this.roundAndFix(tax);
+        const rounded = this.roundAndFix(Number(roundedSubtotal) + Number(roundedTax));
         
         this.setState({
             appointment: res[0],

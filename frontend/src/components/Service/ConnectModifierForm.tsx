@@ -11,7 +11,7 @@ class ConnectModifierForm extends Component<PropsType,any> {
         super(props);
         this.state = {
             id: props.id,
-            modID: 1,
+            modID: 0,
             modifiers: [],
         };
         this.csrftoken = getCookie(document, 'csrftoken');
@@ -24,7 +24,7 @@ class ConnectModifierForm extends Component<PropsType,any> {
     getModifiers = () => {
         getAllModifiers()
             .then(res => {
-                this.setState({ modifiers: res});
+                this.setState({ modifiers: res, modID: res[0].id});
             })
             .catch(err => console.log(err));
     }
